@@ -1,0 +1,40 @@
+.custom-table {
+    width: 80%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 100px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 12px;
+    text-align: left;
+     color: azure;
+ 
+  }
+  
+  .custom-table th {
+    background-color: #a6c42f; /* Green header background */
+    color: #fff; /* White text color */
+  }
+  
+  .custom-table tbody tr {
+    background-color: black; /* Light gray alternate rows */
+    font-color: azure;
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: white; /* Darker gray on hover */
+  }
+
+  .custom-table tr:hover,
+  .custom-table td:hover{
+    color: blue;
+  }
+  
+  .custom-table tbody tr:last-child {
+    border-bottom: none; /* Remove border from last row */
+  }
+  

@@ -1,0 +1,37 @@
+.slider-container{
+    position: relative;
+    max-width: auto; /* Adjust the maximum width as needed */
+    margin: 100px;
+  }
+  
+.slide{
+    width: 50%;
+    padding: 30px 100px 0px 100px;
+    height: 45%;
+  }
+  
+.arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .prev {
+    left: 10px; /* Adjust the left position */
+  }
+  
+  .next {
+    right: 10px; /* Adjust the right position */
+  }
+  

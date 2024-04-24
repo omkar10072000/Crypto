@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import Slider from './Pages/Slider';
+import Cointable from './Pages/Cointable';
+
+const data = [
+  { name: 'John', age: 30, email: 'john@example.com' },
+  { name: 'Jane', age: 25, email: 'jane@example.com' },
+  { name: 'Doe', age: 40, email: 'doe@example.com' },
+];
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <div className='App' >
+      <Slider />
+      <Cointable data={data}/>
+      </div>
   );
 }
 
