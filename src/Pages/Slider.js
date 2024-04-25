@@ -4,116 +4,27 @@ import Navbar from "./Navbar";
 import { Audio } from 'react-loader-spinner';
 
 
-// const a = [
-// ];
-
-
-
-// const price = [];
-// const slides =[];
-
-
-// function retriveimage(coin) {
-//   const url = `https://coingecko.p.rapidapi.com/coins/`+coin+`?localization=true&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`;
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       'X-RapidAPI-Key': '5ca41e04e9msha31eb5f23fbe9abp1af9acjsn626dfaec2a4c',
-//       'X-RapidAPI-Host': 'coingecko.p.rapidapi.com'
-//     }
-//   };
-
-//   return new Promise((resolve, reject) => {
-    
-//     fetch(url, options)
-//       .then(response => response.json())
-//       .then(result => {
-//         const img = result.image.large;
-//         console.log(img);
-//         resolve(img);
-//       })
-//       .catch(error => reject(error));
-//   });
-// }
-
-
-
-
-// async function information(coin){
-//   const url = `https://coingecko.p.rapidapi.com/simple/price?ids=`+coin+`&vs_currencies=inr`;
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '5ca41e04e9msha31eb5f23fbe9abp1af9acjsn626dfaec2a4c',
-// 		'X-RapidAPI-Host': 'coingecko.p.rapidapi.com'
-// 	}
-// };
-// return new Promise((resolve, reject) => {
-//   fetch(url, options)
-//     .then(response => response.json())
-//     .then(result => {
-//       console.log(result);
-//       const img = result;
-//       console.log(img[coin].inr);
-//       resolve(img[coin].inr);
-//     })
-//     .catch(error => reject(error));
-// });
-// }
-
-
-
-
-
-// function images(coin) {
-//   return retriveimage(coin);
-// }
-
-// // Call the images function synchronously
-// function im (coin ){images(coin).then(img => {
-//   console.log(img,"----------------------------");
-//   a.push(img);
-//   console.log(a);
-//   return img;
-// }).catch(error => {
-//   console.error(error);
-// });
-
-// }
-
-// function info (coin ){information(coin).then(img => {
-//   console.log(img,"----------------------------");
-//   price.push(img);
-//   console.log(a);
-//   return img;
-// }).catch(error => {
-//   console.error(error);
-// });
-
-// }
-
-
-// var data = [];
-
-
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndex1, setCurrentIndex1] = useState(1);
   const [currentIndex2, setCurrentIndex2] = useState(2);
+  
+  const [flag, setflag] = useState(true);
+  const [datas , setdatas]= useState([]);
   var count =1;
 
-  var datas = [];
-
   const a = [];
-const price = [];
+  const price = [];
+  
+  useEffect(()=>{
 
 async function fetchData(url) {
   const options = {
     method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '5ca41e04e9msha31eb5f23fbe9abp1af9acjsn626dfaec2a4c',
-      'X-RapidAPI-Host': 'coingecko.p.rapidapi.com'
-    }
+	headers: {
+		'X-RapidAPI-Key': '0a11b58c70mshe7dc7ddd4c0a177p1bb4aejsnf3ee63ce2660',
+		'X-RapidAPI-Host': 'coingecko.p.rapidapi.com'
+	}
   };
 
   try {
@@ -159,7 +70,7 @@ async function getData(coin) {
     const priceData = await fetchInformation(coin);
     price.push(priceData);
 
-    return { name: 'omkar', image: imageData, price: priceData };
+    return { name: coin , image: imageData, price: priceData };
   } catch (error) {
     console.error('Error getting data:', error);
     return null;
@@ -167,19 +78,34 @@ async function getData(coin) {
 }
 
 async function main() {
-  const coin = 'bitcoin';
-  var data = await getData(coin);
-  console.log('Data:', data);
-  datas.push(data);
-  console.log(datas)
+  const coins = ['bitcoin','bitcoin','bitcoin','bitcoin'];
+  var arrr = [];
+  
+  for(let i=0;i< coins.length;i++)
+  {
+  const data = await getData(coins[i]);
+
+  if(data)
+  {
+   
+   setflag(false);
+    
+   arrr.push(data);
+   if((datas.length===0))
+   {
+   setdatas(arrr);
+   }
+  }
+  }
+  console.log('Data:', datas);
 }
 
 
 
 
 
-  useEffect(()=>{
-    main();
+
+    main();    
      
   },[]);
     
@@ -189,7 +115,7 @@ async function main() {
     setCurrentIndex2((prevIndex) => (prevIndex === a.length - 2 ? 0 : prevIndex + 1));
     
     console.log(currentIndex,'-----------------',currentIndex1,'------------------------',currentIndex2);
-
+    console.log(datas);
   };
 
   const prevSlide = () => {
@@ -220,42 +146,44 @@ async function main() {
   return (
     <div>
       <Navbar />
-    <div className="slider-container">
-      <button className="arrow prev" onClick={prevSlide}>
-        &larr;
-      </button>
-      <div           isPacked={true} >
-      <Audio
-  height="80"
-  width="80"
-  radius="9"
-  color="green"
-  ariaLabel="loading"
-  wrapperStyle
-  wrapperClass
-/>
+      <div className="slider-container">
+        
+        <button className="arrow prev" onClick={prevSlide}>
+          &larr;
+        </button>
+        {
+        console.log("length========================",flag)}
+        {flag ? (
+          <div>
+            <Audio height="80"
+              width="80"
+              radius="9"
+              color="green"
+              ariaLabel="loading"
+              wrapperStyle
+              wrapperClass
+            />
+          </div>
+        ) : (
+          <div style={{ display: 'flex' }} >
+            {
+          console.log("azesdxcfgvbhjnnbhvg",datas,"azesdxcfgvbhjnnbhvg",datas[1],"azesdxcfgvbhjnnbhvg",datas[2],datas.length,datas[0])}
+            <div>
+              <img src={datas[0].image} className="slide" />
+              <div style={{ textAlign: "center", color: "white", fontWeight: "bold", margin: "10px 10px 10px -50px", fontFamily: "Montserrat", fontSize: "30px" }}>{datas[1].name}</div>
+              <div style={{ textAlign: "center", color: "white", fontWeight: "bold", margin: "10px 10px 10px -50px", fontFamily: "Montserrat", fontSize: "30px" }}>{datas[2].price}</div>
+            </div>
+            
+          </div>
+        )}
+        
+        <button className="arrow next" onClick={nextSlide}>
+          &rarr;
+        </button>
       </div>
-      <div style={{display:'flex'}}           isPacked={false} >
-      <div><img src={a[(currentIndex < a.length  ? currentIndex+1 : 0 )]} alt={`Slide ${currentIndex - 1}`} className="slide" />
-      <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>Bitcoin</div>
-      <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>{price[(currentIndex < a.length  ? currentIndex+1 : 0 )]}</div></div>
-      
-      <div><img src={a[(currentIndex1 < a.length  ? currentIndex1+1 : 0 )]} alt={`Slide ${currentIndex - 1}`} className="slide" />
-      <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>ethereum</div>
-      <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>{price[(currentIndex1 < a.length  ? currentIndex1+1 : 0 )]}</div></div>
-      
-      <div><img src={a[(currentIndex2 < a.length  ? currentIndex2+1 : 0 )]} alt={`Slide ${currentIndex - 1}`} className="slide" />
-      <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>dogecoin</div>      
-      <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>{price[(currentIndex2 < a.length  ? currentIndex2+1 : 0 )]}</div></div>
-      
-      </div>
-      <button className="arrow next" onClick={nextSlide}>
-         &rarr;
-      </button>
-    </div>
     </div>
   );
-};
+};  
 
 export default Slider;
 
