@@ -168,8 +168,7 @@ async function getData(coin) {
 
 async function main() {
   const coin = 'bitcoin';
-  const data = await getData(coin);
-  data.name = 'bitcoin';
+  var data = await getData(coin);
   console.log('Data:', data);
   datas.push(data);
   console.log(datas)
@@ -205,18 +204,18 @@ async function main() {
 
   };
 
-  const getNames=()=>{
-    try{
+  // const getNames=()=>{
+  //   try{
 
-      console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaa=>",datas);
-      const n = datas[(currentIndex < a.length  ? currentIndex+1 : 0 )].image;
+  //     console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaa=>",datas);
+  //     const n = datas[(currentIndex < a.length  ? currentIndex+1 : 0 )].image;
       
-      return n;
-    }catch(err){
-       console.log('error=========================');
-    }
-    return 2000;
-  }
+  //     return n;
+  //   }catch(err){
+  //      console.log('error=========================');
+  //   }
+  //   return 2000;
+  // }
 
   return (
     <div>
@@ -236,12 +235,12 @@ async function main() {
   wrapperClass
 />
       </div>
-      <div style={{display:'flex'}}           isPacked={true} >
-      <div><img src={getNames()} alt={`Slide ${currentIndex - 1}`} className="slide" />
+      <div style={{display:'flex'}}           isPacked={false} >
+      <div><img src={a[(currentIndex < a.length  ? currentIndex+1 : 0 )]} alt={`Slide ${currentIndex - 1}`} className="slide" />
       <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>Bitcoin</div>
       <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>{price[(currentIndex < a.length  ? currentIndex+1 : 0 )]}</div></div>
       
-      <div><img src={a[(currentIndex1 < a.length  ? currentmainIndex1+1 : 0 )]} alt={`Slide ${currentIndex - 1}`} className="slide" />
+      <div><img src={a[(currentIndex1 < a.length  ? currentIndex1+1 : 0 )]} alt={`Slide ${currentIndex - 1}`} className="slide" />
       <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>ethereum</div>
       <div style= {{textAlign:"center", color:"white",fontweight: "bold", margin: "10px 10px 10px -50px", fontfamily: "Montserrat",fontSize:"30px"}}>{price[(currentIndex1 < a.length  ? currentIndex1+1 : 0 )]}</div></div>
       
